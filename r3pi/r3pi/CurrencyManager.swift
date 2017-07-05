@@ -14,16 +14,36 @@ extension NetworkManager {
         
         static let baseURL  = URL(string: "http://apilayer.net/api")!
         
-        static let apiKeyName   = "access_key"
-        static let apiKeyValue  = "79387116d6cdb40e31d2a09f00078946"
+        static let apiKeyName       = "access_key"
+        static let apiKeyValue      = "79387116d6cdb40e31d2a09f00078946"
         
-        static let list         = "list"
-        static let live         = "live"
+        static let list             = "list"
+        static let live             = "live"
+        static let format           = "format"
+        static let jsonFormatValue  = "1"
     }
     
     func updateRates(Completion completion: SuccessCompletionBlockType?) {
         
+        var urlComponents = URLComponents(url: Configuration.baseURL.appendingPathComponent(Configuration.live), resolvingAgainstBaseURL: false)!
+        urlComponents.queryItems = [
+            URLQueryItem(name: Configuration.apiKeyName, value: Configuration.apiKeyValue),
+            URLQueryItem(name: Configuration.format, value: Configuration.jsonFormatValue)
+        ]
         
+        let url = urlComponents.url!
+        
+        get(from: url) { (results, error) in
+            
+            if error == nil, let data = results as? JSONObject {
+                
+                print(data)
+            }
+            else {
+                
+                completion?(false, error)
+            }
+        }
     }
     
     func fetchCurrencies(Completion completion: SuccessCompletionBlockType?) {
