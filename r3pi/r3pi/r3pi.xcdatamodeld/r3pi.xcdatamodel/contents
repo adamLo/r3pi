@@ -6,7 +6,7 @@
         <relationship name="product" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="basket" inverseEntity="Product" syncable="YES"/>
     </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES">
-        <attribute name="longNam" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="longName" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="shortName" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="rateDestination" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExchangeRate" inverseName="destinationCurrency" inverseEntity="ExchangeRate" syncable="YES"/>
         <relationship name="rateSource" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExchangeRate" inverseName="sourceCurrency" inverseEntity="ExchangeRate" syncable="YES"/>

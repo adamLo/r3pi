@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CoreDataManager.sharedInstance.seedDatabase()
         
+        NetworkManager.sharedInstance.fetchCurrencies(Completion: nil)
+        
         return true
     }
 

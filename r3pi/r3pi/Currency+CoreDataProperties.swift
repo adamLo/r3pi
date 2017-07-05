@@ -16,7 +16,7 @@ extension Currency {
         return NSFetchRequest<Currency>(entityName: "Currency")
     }
 
-    @NSManaged public var longNam: String?
+    @NSManaged public var longName: String?
     @NSManaged public var shortName: String?
     @NSManaged public var rateDestination: NSSet?
     @NSManaged public var rateSource: NSSet?

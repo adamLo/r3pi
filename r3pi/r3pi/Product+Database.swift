@@ -21,7 +21,7 @@ extension Product {
         static let currency = "currency"
     }
     
-    class func newProduct(in context: NSManagedObjectContext) -> Product {
+    class func new(in context: NSManagedObjectContext) -> Product {
         
         let productDescription = NSEntityDescription.entity(forEntityName: entityName, in: context)!
         

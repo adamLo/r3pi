@@ -27,6 +27,9 @@
 		1990A7711F0D70EF006C41F4 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7691F0D70EF006C41F4 /* Product+CoreDataProperties.swift */; };
 		1990A7721F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A76A1F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift */; };
 		1990A7731F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A76B1F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift */; };
+		1990A7761F0D724B006C41F4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7751F0D724B006C41F4 /* NetworkManager.swift */; };
+		1990A7781F0D75DF006C41F4 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7771F0D75DF006C41F4 /* CurrencyManager.swift */; };
+		1990A77A1F0D78A1006C41F4 /* Currency+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7791F0D78A1006C41F4 /* Currency+Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		1990A7691F0D70EF006C41F4 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1990A76A1F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasketItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1990A76B1F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasketItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1990A7751F0D724B006C41F4 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1990A7771F0D75DF006C41F4 /* CurrencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
+		1990A7791F0D78A1006C41F4 /* Currency+Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Currency+Database.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 		195BEBA51F0D5B93001C57D2 /* r3pi */ = {
 			isa = PBXGroup;
 			children = (
+				1990A7741F0D720A006C41F4 /* Network */,
 				195BEBD41F0D601E001C57D2 /* Core Data */,
 				195BEBA61F0D5B93001C57D2 /* AppDelegate.swift */,
 				195BEBA81F0D5B93001C57D2 /* ViewController.swift */,
@@ -183,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				195BEBEF1F0D69B9001C57D2 /* Product+Database.swift */,
+				1990A7791F0D78A1006C41F4 /* Currency+Database.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +202,15 @@
 				195BEBEB1F0D6465001C57D2 /* DatabaseInitializer.swift */,
 			);
 			name = Manager;
+			sourceTree = "<group>";
+		};
+		1990A7741F0D720A006C41F4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1990A7751F0D724B006C41F4 /* NetworkManager.swift */,
+				1990A7771F0D75DF006C41F4 /* CurrencyManager.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,13 +356,16 @@
 				195BEBEC1F0D6465001C57D2 /* DatabaseInitializer.swift in Sources */,
 				1990A76E1F0D70EF006C41F4 /* Currency+CoreDataClass.swift in Sources */,
 				1990A76D1F0D70EF006C41F4 /* ExchangeRate+CoreDataProperties.swift in Sources */,
+				1990A77A1F0D78A1006C41F4 /* Currency+Database.swift in Sources */,
 				1990A7701F0D70EF006C41F4 /* Product+CoreDataClass.swift in Sources */,
 				1990A76C1F0D70EF006C41F4 /* ExchangeRate+CoreDataClass.swift in Sources */,
 				1990A7731F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift in Sources */,
 				1990A7721F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift in Sources */,
 				195BEBA91F0D5B93001C57D2 /* ViewController.swift in Sources */,
 				195BEBA71F0D5B93001C57D2 /* AppDelegate.swift in Sources */,
+				1990A7761F0D724B006C41F4 /* NetworkManager.swift in Sources */,
 				195BEBD71F0D6043001C57D2 /* r3pi.xcdatamodeld in Sources */,
+				1990A7781F0D75DF006C41F4 /* CurrencyManager.swift in Sources */,
 				195BEBEA1F0D635C001C57D2 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,7 +30,7 @@ extension CoreDataManager {
                  
                             for productObject in products {
                                 
-                                let product = Product.newProduct(in: context)
+                                let product = Product.new(in: context)
                                 product.update(with: productObject)
                             }
                             
