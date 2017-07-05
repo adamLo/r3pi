@@ -1,0 +1,15 @@
+//
+//  Product+CoreDataClass.swift
+//  r3pi
+//
+//  Created by Adam Lovastyik [Standard] on 05/07/2017.
+//  Copyright © 2017 Adam Lovastyik. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+@objc(Product)
+public class Product: NSManagedObject {
+
+}

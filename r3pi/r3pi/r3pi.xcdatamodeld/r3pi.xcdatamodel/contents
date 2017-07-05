@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BasketItem" representedClassName="BasketItem" syncable="YES">
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="product" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="basket" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="longNam" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="shortName" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="rateDestination" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExchangeRate" inverseName="destinationCurrency" inverseEntity="ExchangeRate" syncable="YES"/>
+        <relationship name="rateSource" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExchangeRate" inverseName="sourceCurrency" inverseEntity="ExchangeRate" syncable="YES"/>
+    </entity>
+    <entity name="ExchangeRate" representedClassName="ExchangeRate" syncable="YES">
+        <attribute name="rate" attributeType="Double" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="updateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="destinationCurrency" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="rateDestination" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="sourceCurrency" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="rateSource" inverseEntity="Currency" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <attribute name="currency" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="unit" attributeType="String" syncable="YES"/>
+        <relationship name="basket" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="BasketItem" inverseName="product" inverseEntity="BasketItem" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BasketItem" positionX="-18" positionY="72" width="128" height="90"/>
+        <element name="Currency" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="ExchangeRate" positionX="-36" positionY="36" width="128" height="105"/>
+        <element name="Product" positionX="-63" positionY="-18" width="128" height="120"/>
+    </elements>
+</model>

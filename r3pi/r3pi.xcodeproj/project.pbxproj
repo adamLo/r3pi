@@ -14,6 +14,19 @@
 		195BEBB11F0D5B93001C57D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 195BEBAF1F0D5B93001C57D2 /* LaunchScreen.storyboard */; };
 		195BEBBC1F0D5B93001C57D2 /* r3piTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BEBBB1F0D5B93001C57D2 /* r3piTests.swift */; };
 		195BEBC71F0D5B93001C57D2 /* r3piUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BEBC61F0D5B93001C57D2 /* r3piUITests.swift */; };
+		195BEBD71F0D6043001C57D2 /* r3pi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 195BEBD51F0D6043001C57D2 /* r3pi.xcdatamodeld */; };
+		195BEBEA1F0D635C001C57D2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BEBE91F0D635C001C57D2 /* CoreDataManager.swift */; };
+		195BEBEC1F0D6465001C57D2 /* DatabaseInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BEBEB1F0D6465001C57D2 /* DatabaseInitializer.swift */; };
+		195BEBF01F0D69B9001C57D2 /* Product+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195BEBEF1F0D69B9001C57D2 /* Product+Database.swift */; };
+		195BEBF21F0D6B5E001C57D2 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 195BEBF11F0D6B5E001C57D2 /* products.json */; };
+		1990A76C1F0D70EF006C41F4 /* ExchangeRate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7641F0D70EF006C41F4 /* ExchangeRate+CoreDataClass.swift */; };
+		1990A76D1F0D70EF006C41F4 /* ExchangeRate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7651F0D70EF006C41F4 /* ExchangeRate+CoreDataProperties.swift */; };
+		1990A76E1F0D70EF006C41F4 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7661F0D70EF006C41F4 /* Currency+CoreDataClass.swift */; };
+		1990A76F1F0D70EF006C41F4 /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7671F0D70EF006C41F4 /* Currency+CoreDataProperties.swift */; };
+		1990A7701F0D70EF006C41F4 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7681F0D70EF006C41F4 /* Product+CoreDataClass.swift */; };
+		1990A7711F0D70EF006C41F4 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7691F0D70EF006C41F4 /* Product+CoreDataProperties.swift */; };
+		1990A7721F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A76A1F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift */; };
+		1990A7731F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A76B1F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +60,19 @@
 		195BEBC21F0D5B93001C57D2 /* r3piUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = r3piUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		195BEBC61F0D5B93001C57D2 /* r3piUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = r3piUITests.swift; sourceTree = "<group>"; };
 		195BEBC81F0D5B93001C57D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		195BEBD61F0D6043001C57D2 /* r3pi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = r3pi.xcdatamodel; sourceTree = "<group>"; };
+		195BEBE91F0D635C001C57D2 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		195BEBEB1F0D6465001C57D2 /* DatabaseInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseInitializer.swift; sourceTree = "<group>"; };
+		195BEBEF1F0D69B9001C57D2 /* Product+Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Product+Database.swift"; sourceTree = "<group>"; };
+		195BEBF11F0D6B5E001C57D2 /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
+		1990A7641F0D70EF006C41F4 /* ExchangeRate+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExchangeRate+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1990A7651F0D70EF006C41F4 /* ExchangeRate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExchangeRate+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1990A7661F0D70EF006C41F4 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1990A7671F0D70EF006C41F4 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1990A7681F0D70EF006C41F4 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1990A7691F0D70EF006C41F4 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1990A76A1F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasketItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1990A76B1F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasketItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +123,7 @@
 		195BEBA51F0D5B93001C57D2 /* r3pi */ = {
 			isa = PBXGroup;
 			children = (
+				195BEBD41F0D601E001C57D2 /* Core Data */,
 				195BEBA61F0D5B93001C57D2 /* AppDelegate.swift */,
 				195BEBA81F0D5B93001C57D2 /* ViewController.swift */,
 				195BEBAA1F0D5B93001C57D2 /* Main.storyboard */,
@@ -123,6 +150,50 @@
 				195BEBC81F0D5B93001C57D2 /* Info.plist */,
 			);
 			path = r3piUITests;
+			sourceTree = "<group>";
+		};
+		195BEBD41F0D601E001C57D2 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				195BEBEE1F0D698B001C57D2 /* Manager */,
+				195BEBED1F0D6974001C57D2 /* Extensions */,
+				195BEBD81F0D6302001C57D2 /* Generated Entities */,
+				195BEBD51F0D6043001C57D2 /* r3pi.xcdatamodeld */,
+				195BEBF11F0D6B5E001C57D2 /* products.json */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		195BEBD81F0D6302001C57D2 /* Generated Entities */ = {
+			isa = PBXGroup;
+			children = (
+				1990A7641F0D70EF006C41F4 /* ExchangeRate+CoreDataClass.swift */,
+				1990A7651F0D70EF006C41F4 /* ExchangeRate+CoreDataProperties.swift */,
+				1990A7661F0D70EF006C41F4 /* Currency+CoreDataClass.swift */,
+				1990A7671F0D70EF006C41F4 /* Currency+CoreDataProperties.swift */,
+				1990A7681F0D70EF006C41F4 /* Product+CoreDataClass.swift */,
+				1990A7691F0D70EF006C41F4 /* Product+CoreDataProperties.swift */,
+				1990A76A1F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift */,
+				1990A76B1F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift */,
+			);
+			name = "Generated Entities";
+			sourceTree = "<group>";
+		};
+		195BEBED1F0D6974001C57D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				195BEBEF1F0D69B9001C57D2 /* Product+Database.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		195BEBEE1F0D698B001C57D2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				195BEBE91F0D635C001C57D2 /* CoreDataManager.swift */,
+				195BEBEB1F0D6465001C57D2 /* DatabaseInitializer.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				195BEBB11F0D5B93001C57D2 /* LaunchScreen.storyboard in Resources */,
+				195BEBF21F0D6B5E001C57D2 /* products.json in Resources */,
 				195BEBAE1F0D5B93001C57D2 /* Assets.xcassets in Resources */,
 				195BEBAC1F0D5B93001C57D2 /* Main.storyboard in Resources */,
 			);
@@ -261,8 +333,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1990A76F1F0D70EF006C41F4 /* Currency+CoreDataProperties.swift in Sources */,
+				195BEBF01F0D69B9001C57D2 /* Product+Database.swift in Sources */,
+				1990A7711F0D70EF006C41F4 /* Product+CoreDataProperties.swift in Sources */,
+				195BEBEC1F0D6465001C57D2 /* DatabaseInitializer.swift in Sources */,
+				1990A76E1F0D70EF006C41F4 /* Currency+CoreDataClass.swift in Sources */,
+				1990A76D1F0D70EF006C41F4 /* ExchangeRate+CoreDataProperties.swift in Sources */,
+				1990A7701F0D70EF006C41F4 /* Product+CoreDataClass.swift in Sources */,
+				1990A76C1F0D70EF006C41F4 /* ExchangeRate+CoreDataClass.swift in Sources */,
+				1990A7731F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift in Sources */,
+				1990A7721F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift in Sources */,
 				195BEBA91F0D5B93001C57D2 /* ViewController.swift in Sources */,
 				195BEBA71F0D5B93001C57D2 /* AppDelegate.swift in Sources */,
+				195BEBD71F0D6043001C57D2 /* r3pi.xcdatamodeld in Sources */,
+				195BEBEA1F0D635C001C57D2 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +622,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		195BEBD51F0D6043001C57D2 /* r3pi.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				195BEBD61F0D6043001C57D2 /* r3pi.xcdatamodel */,
+			);
+			currentVersion = 195BEBD61F0D6043001C57D2 /* r3pi.xcdatamodel */;
+			path = r3pi.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 195BEB9B1F0D5B93001C57D2 /* Project object */;
 }
