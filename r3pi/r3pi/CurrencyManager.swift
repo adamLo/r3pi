@@ -21,15 +21,25 @@ extension NetworkManager {
         static let live             = "live"
         static let format           = "format"
         static let jsonFormatValue  = "1"
+        static let source           = "source"
+        static let currencies       = "currencies"
     }
     
-    func updateRates(Completion completion: SuccessCompletionBlockType?) {
+    func updateRates(source currency: String, currencies: [String]? = nil, Completion completion: SuccessCompletionBlockType?) {
         
         var urlComponents = URLComponents(url: Configuration.baseURL.appendingPathComponent(Configuration.live), resolvingAgainstBaseURL: false)!
+        
         urlComponents.queryItems = [
             URLQueryItem(name: Configuration.apiKeyName, value: Configuration.apiKeyValue),
-            URLQueryItem(name: Configuration.format, value: Configuration.jsonFormatValue)
+            URLQueryItem(name: Configuration.format, value: Configuration.jsonFormatValue),
+            URLQueryItem(name: Configuration.source, value: currency)
         ]
+        
+        if currencies != nil {
+            
+            let currencyParam = currencies!.joined(separator: ",")
+            urlComponents.queryItems!.append(URLQueryItem(name: Configuration.currencies, value: currencyParam))
+        }
         
         let url = urlComponents.url!
         
@@ -37,7 +47,7 @@ extension NetworkManager {
             
             if error == nil, let data = results as? JSONObject {
                 
-                print(data)
+                ExchangeRate.process(json: data, completion: completion)
             }
             else {
                 

@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 DispatchQueue.main.async {
                     
-                    NetworkManager.sharedInstance.updateRates(Completion: { (success, error) in
+                    NetworkManager.sharedInstance.updateRates(source: "USD", Completion: { (success, error) in
                         //
                     })
                 }
