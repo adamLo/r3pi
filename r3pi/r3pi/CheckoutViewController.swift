@@ -17,14 +17,30 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var switchCurrencyButton: UIButton!
     @IBOutlet weak var clearCartButton: UIButton!
+    @IBOutlet weak var rateActivityIndicator: UIActivityIndicatorView!
+    
+    private struct Segue {
+        
+        static let switchCurrency = "switchCurrency"
+    }
     
     private var selectedCurrency: Currency? {
+        
+        didSet {
+            
+            self.updateExchangeRate()
+        }
+    }
+    
+    private var exchangeRate: Double = 1.0 {
         
         didSet {
             
             self.calculateTotal()
         }
     }
+    
+    private var sourceCurrencyName = "USD"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +61,23 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
     
     private func setupUI() {
         
+    }
+    
+    private func setupTotal() {
+        
+        totalLabel.font = UIFont.defaultFont(style: .medium, size: 13.0)
+        totalLabel.textColor = UIColor.defaultTextColor
+        totalLabel.text = NSLocalizedString("Total:", comment: "Total sum title")
+        
+        totalPriceLabel.font = UIFont.defaultFont(style: .bold, size: 13.0)
+        totalPriceLabel.textColor = UIColor.defaultTextColor
+        
+        switchCurrencyButton.titleLabel?.font = UIFont.defaultFont(style: .medium, size: 13.0)
+        switchCurrencyButton.setTitleColor(UIColor.defaultButtonColor, for: .normal)
+        
+        clearCartButton.setTitle(NSLocalizedString("Clear cart", comment: "Cleart cart button title"), for: .normal)
+        clearCartButton.titleLabel?.font = UIFont.defaultFont(style: .medium, size: 13.0)
+        clearCartButton.setTitleColor(UIColor.defaultButtonColor, for: .normal)
     }
     
     // MARK: - Tableview
@@ -197,9 +230,13 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
     }
     
     @IBAction func switchCurrencyTouched(_ sender: Any) {
+        
+        performSegue(withIdentifier: Segue.switchCurrency, sender: sender)
     }
     
     @IBAction func clearCartTouched(_ sender: Any) {
+        
+        print("Clear cart")
     }
     
     // MARK: - Calculation
@@ -208,7 +245,6 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
         
         var totalPrice: Double = 0
         var currencyName = selectedCurrency != nil && selectedCurrency!.shortName != nil ? selectedCurrency!.shortName : ""
-        var exchangeRate: Double = 1.0
         
         if let items = cartFetchdResultsController.fetchedObjects as? [BasketItem] {
             
@@ -230,8 +266,66 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
             
             currencyName = "N/A"
         }
+        else {
+            
+            sourceCurrencyName = currencyName!
+        }
         
         totalPriceLabel.text = String(format: "%0.2f", totalPrice)
         switchCurrencyButton.setTitle(currencyName, for: .normal)
+    }
+    
+    private func updateExchangeRate() {
+
+        if selectedCurrency != nil && selectedCurrency!.shortName != nil {
+        
+            rateActivityIndicator.startAnimating()
+            
+            let targetCurrencyName = selectedCurrency!.shortName!.uppercased()
+            
+            NetworkManager.sharedInstance.updateRates(source: sourceCurrencyName, currencies: [targetCurrencyName]) { (success, error) in
+                
+                DispatchQueue.main.async {
+                    
+                    self.rateActivityIndicator.stopAnimating()
+                }
+                
+                if success {
+                    
+                    let context = CoreDataManager.sharedInstance.createNewManagedObjectContext()
+                    
+                    context.perform({
+                    
+                        if let sourceCurrency = Currency.find(by: self.sourceCurrencyName, in: context) {
+                            
+                            if let targetCurrency = Currency.find(by: targetCurrencyName, in: context) {
+                        
+                                if let rate = ExchangeRate.find(by: sourceCurrency, destination: targetCurrency, in: context) {
+                
+                                    DispatchQueue.main.async {
+                                    
+                                        self.exchangeRate = rate.rate
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                else {
+                    
+                    DispatchQueue.main.async {
+                        
+                        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error dialog titl"), message: NSLocalizedString("Error updating exchange rate", comment: "Error mssag when exchange rate updat failed"), preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        else {
+            
+            exchangeRate = 1.0
+        }
     }
 }

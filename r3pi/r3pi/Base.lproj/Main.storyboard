@@ -186,6 +186,13 @@
                                     <rect key="frame" x="0.0" y="72" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bjw-xi-mOz" userLabel="Top Horizontal Line">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="1Ed-DH-yqx"/>
+                                            </constraints>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNi-TR-Zg8">
                                             <rect key="frame" x="330" y="9.5" width="35" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -212,6 +219,9 @@
                                                 <action selector="clearCartTouched:" destination="w5N-ib-BVq" eventType="touchUpInside" id="9V1-Jz-Obw"/>
                                             </connections>
                                         </button>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MM9-Ly-pri">
+                                            <rect key="frame" x="294" y="10" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -219,11 +229,16 @@
                                         <constraint firstItem="gfn-o4-WV3" firstAttribute="centerX" secondItem="g13-Hj-IZw" secondAttribute="centerX" id="Bfz-ap-NoW"/>
                                         <constraint firstAttribute="trailing" secondItem="PNi-TR-Zg8" secondAttribute="trailing" constant="10" id="BlY-JU-qz9"/>
                                         <constraint firstItem="dYo-7G-rqu" firstAttribute="centerY" secondItem="keX-4h-dMA" secondAttribute="centerY" id="CVk-Hw-8BC"/>
+                                        <constraint firstItem="MM9-Ly-pri" firstAttribute="centerY" secondItem="keX-4h-dMA" secondAttribute="centerY" id="Cg9-9u-k8k"/>
                                         <constraint firstAttribute="bottom" secondItem="gfn-o4-WV3" secondAttribute="bottom" constant="5" id="DZJ-IH-Y6e"/>
+                                        <constraint firstItem="Bjw-xi-mOz" firstAttribute="leading" secondItem="g13-Hj-IZw" secondAttribute="leading" id="LsN-Md-thH"/>
                                         <constraint firstItem="PNi-TR-Zg8" firstAttribute="leading" secondItem="keX-4h-dMA" secondAttribute="trailing" constant="10" id="MaC-MB-GsD"/>
                                         <constraint firstItem="keX-4h-dMA" firstAttribute="top" secondItem="g13-Hj-IZw" secondAttribute="top" constant="5" id="MvQ-Zv-F8P"/>
+                                        <constraint firstAttribute="trailing" secondItem="Bjw-xi-mOz" secondAttribute="trailing" id="QOf-KA-kOx"/>
                                         <constraint firstItem="PNi-TR-Zg8" firstAttribute="centerY" secondItem="keX-4h-dMA" secondAttribute="centerY" id="cIc-HV-s3b"/>
+                                        <constraint firstItem="Bjw-xi-mOz" firstAttribute="top" secondItem="g13-Hj-IZw" secondAttribute="top" id="fAf-uS-aC7"/>
                                         <constraint firstItem="gfn-o4-WV3" firstAttribute="top" secondItem="keX-4h-dMA" secondAttribute="bottom" constant="10" id="j3C-Zw-r10"/>
+                                        <constraint firstItem="MM9-Ly-pri" firstAttribute="centerX" secondItem="keX-4h-dMA" secondAttribute="centerX" id="k0Z-bU-XVI"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -326,14 +341,34 @@
                     <connections>
                         <outlet property="clearCartButton" destination="gfn-o4-WV3" id="iGk-nz-JUJ"/>
                         <outlet property="itemsTableView" destination="dfk-Sj-HP2" id="jMo-p0-5x2"/>
+                        <outlet property="rateActivityIndicator" destination="MM9-Ly-pri" id="mGP-9I-iRQ"/>
                         <outlet property="switchCurrencyButton" destination="keX-4h-dMA" id="htg-qX-a1n"/>
                         <outlet property="totalLabel" destination="dYo-7G-rqu" id="LTN-dC-avx"/>
                         <outlet property="totalPriceLabel" destination="PNi-TR-Zg8" id="7AG-8S-OQj"/>
+                        <segue destination="4jk-eu-UDd" kind="show" identifier="switchCurrency" id="Wsf-4G-agb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1K-G0-Vey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1002.4" y="137.18140929535232"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wii-wX-Lwh">
+            <objects>
+                <viewController id="4jk-eu-UDd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BZh-DI-UhD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nmk-AE-xF2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UMk-bC-Gee">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bel-h9-v76" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="136"/>
         </scene>
     </scenes>
 </document>
