@@ -222,6 +222,12 @@
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MM9-Ly-pri">
                                             <rect key="frame" x="294" y="10" width="20" height="20"/>
                                         </activityIndicatorView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange rate: 1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Za0-oE-sgD">
+                                            <rect key="frame" x="276.5" y="33" width="88.5" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -235,10 +241,11 @@
                                         <constraint firstItem="PNi-TR-Zg8" firstAttribute="leading" secondItem="keX-4h-dMA" secondAttribute="trailing" constant="10" id="MaC-MB-GsD"/>
                                         <constraint firstItem="keX-4h-dMA" firstAttribute="top" secondItem="g13-Hj-IZw" secondAttribute="top" constant="5" id="MvQ-Zv-F8P"/>
                                         <constraint firstAttribute="trailing" secondItem="Bjw-xi-mOz" secondAttribute="trailing" id="QOf-KA-kOx"/>
+                                        <constraint firstItem="gfn-o4-WV3" firstAttribute="top" secondItem="Za0-oE-sgD" secondAttribute="bottom" id="XSy-nr-9cG"/>
                                         <constraint firstItem="PNi-TR-Zg8" firstAttribute="centerY" secondItem="keX-4h-dMA" secondAttribute="centerY" id="cIc-HV-s3b"/>
                                         <constraint firstItem="Bjw-xi-mOz" firstAttribute="top" secondItem="g13-Hj-IZw" secondAttribute="top" id="fAf-uS-aC7"/>
-                                        <constraint firstItem="gfn-o4-WV3" firstAttribute="top" secondItem="keX-4h-dMA" secondAttribute="bottom" constant="10" id="j3C-Zw-r10"/>
                                         <constraint firstItem="MM9-Ly-pri" firstAttribute="centerX" secondItem="keX-4h-dMA" secondAttribute="centerX" id="k0Z-bU-XVI"/>
+                                        <constraint firstItem="Za0-oE-sgD" firstAttribute="trailing" secondItem="PNi-TR-Zg8" secondAttribute="trailing" id="mdA-hU-0zT"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -340,6 +347,7 @@
                     </view>
                     <connections>
                         <outlet property="clearCartButton" destination="gfn-o4-WV3" id="iGk-nz-JUJ"/>
+                        <outlet property="exchangeRateLabel" destination="Za0-oE-sgD" id="c1Z-pa-ftO"/>
                         <outlet property="itemsTableView" destination="dfk-Sj-HP2" id="jMo-p0-5x2"/>
                         <outlet property="rateActivityIndicator" destination="MM9-Ly-pri" id="mGP-9I-iRQ"/>
                         <outlet property="switchCurrencyButton" destination="keX-4h-dMA" id="htg-qX-a1n"/>
@@ -352,10 +360,10 @@
             </objects>
             <point key="canvasLocation" x="1002.4" y="137.18140929535232"/>
         </scene>
-        <!--View Controller-->
+        <!--Currency View Controller-->
         <scene sceneID="wii-wX-Lwh">
             <objects>
-                <viewController id="4jk-eu-UDd" sceneMemberID="viewController">
+                <viewController id="4jk-eu-UDd" customClass="CurrencyViewController" customModule="r3pi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BZh-DI-UhD"/>
                         <viewControllerLayoutGuide type="bottom" id="Nmk-AE-xF2"/>
@@ -363,12 +371,31 @@
                     <view key="view" contentMode="scaleToFill" id="UMk-bC-Gee">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VFe-vg-Ge5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4jk-eu-UDd" id="ZCj-Hi-tIK"/>
+                                    <outlet property="delegate" destination="4jk-eu-UDd" id="iBF-In-gLv"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VFe-vg-Ge5" secondAttribute="trailing" id="IHy-hm-E4s"/>
+                            <constraint firstItem="VFe-vg-Ge5" firstAttribute="top" secondItem="UMk-bC-Gee" secondAttribute="top" id="PQk-lz-L23"/>
+                            <constraint firstItem="VFe-vg-Ge5" firstAttribute="leading" secondItem="UMk-bC-Gee" secondAttribute="leading" id="hhp-oj-6MP"/>
+                            <constraint firstItem="Nmk-AE-xF2" firstAttribute="top" secondItem="VFe-vg-Ge5" secondAttribute="bottom" id="zVU-3g-kfU"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currencyTableView" destination="VFe-vg-Ge5" id="sl6-xy-YvG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bel-h9-v76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1852" y="136"/>
+            <point key="canvasLocation" x="1852" y="135.38230884557723"/>
         </scene>
     </scenes>
 </document>

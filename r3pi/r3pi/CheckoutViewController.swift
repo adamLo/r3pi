@@ -18,6 +18,7 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
     @IBOutlet weak var switchCurrencyButton: UIButton!
     @IBOutlet weak var clearCartButton: UIButton!
     @IBOutlet weak var rateActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var exchangeRateLabel: UILabel!
     
     private struct Segue {
         
@@ -37,6 +38,16 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
         didSet {
             
             self.calculateTotal()
+            
+            if exchangeRate != 1.0 {
+                
+                exchangeRateLabel.text = String(format: NSLocalizedString("Exchange rate: %0.3f", comment: "Exchnage rate format"), exchangeRate)
+                exchangeRateLabel.isHidden = false
+            }
+            else {
+               
+                exchangeRateLabel.isHidden = true
+            }
         }
     }
     
@@ -74,6 +85,10 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
         
         switchCurrencyButton.titleLabel?.font = UIFont.defaultFont(style: .medium, size: 13.0)
         switchCurrencyButton.setTitleColor(UIColor.defaultButtonColor, for: .normal)
+        
+        exchangeRateLabel.font = UIFont.defaultFont(style: .light, size: 10.0)
+        exchangeRateLabel.textColor = UIColor.defaultTextColor
+        exchangeRateLabel.isHidden = true
         
         clearCartButton.setTitle(NSLocalizedString("Clear cart", comment: "Cleart cart button title"), for: .normal)
         clearCartButton.titleLabel?.font = UIFont.defaultFont(style: .medium, size: 13.0)
@@ -236,7 +251,14 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
     
     @IBAction func clearCartTouched(_ sender: Any) {
         
-        print("Clear cart")
+        let alert = UIAlertController(title: NSLocalizedString("Clear cart", comment: "Clear cart alert title"), message: NSLocalizedString("Are you sure?", comment: "Clear cart alert message"), preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes, clear", comment: "Clear cart confirmation title"), style: .destructive, handler: { (action) in
+            
+            BasketItem.clearCart()
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Clear cart cancel title"), style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)                
     }
     
     // MARK: - Calculation
@@ -254,9 +276,14 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
                     
                     totalPrice += item.amount * product.price * exchangeRate
                     
-                    if currencyName == "" && product.currency != nil {
+                    if product.currency != nil && product.currency!.characters.count > 0 {
                         
-                        currencyName = product.currency!
+                        if currencyName == "" {
+                        
+                            currencyName = product.currency!
+                        }
+                        
+                        sourceCurrencyName = product.currency!
                     }
                 }
             }
@@ -266,59 +293,62 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
             
             currencyName = "N/A"
         }
-        else {
-            
-            sourceCurrencyName = currencyName!
-        }
         
         totalPriceLabel.text = String(format: "%0.2f", totalPrice)
         switchCurrencyButton.setTitle(currencyName, for: .normal)
+        
+        exchangeRateLabel.isHidden = exchangeRate == 1.0
     }
     
     private func updateExchangeRate() {
 
-        if selectedCurrency != nil && selectedCurrency!.shortName != nil {
+        if selectedCurrency != nil && selectedCurrency!.shortName != nil && selectedCurrency!.shortName != sourceCurrencyName {
         
             rateActivityIndicator.startAnimating()
             
             let targetCurrencyName = selectedCurrency!.shortName!.uppercased()
             
-            NetworkManager.sharedInstance.updateRates(source: sourceCurrencyName, currencies: [targetCurrencyName]) { (success, error) in
+            NetworkManager.sharedInstance.updateRates(source: sourceCurrencyName, currencies: [targetCurrencyName]) {[weak self] (success, error) in
                 
-                DispatchQueue.main.async {
-                    
-                    self.rateActivityIndicator.stopAnimating()
-                }
+                if self != nil {
                 
-                if success {
-                    
-                    let context = CoreDataManager.sharedInstance.createNewManagedObjectContext()
-                    
-                    context.perform({
-                    
-                        if let sourceCurrency = Currency.find(by: self.sourceCurrencyName, in: context) {
-                            
-                            if let targetCurrency = Currency.find(by: targetCurrencyName, in: context) {
+                    DispatchQueue.main.async {
                         
-                                if let rate = ExchangeRate.find(by: sourceCurrency, destination: targetCurrency, in: context) {
-                
-                                    DispatchQueue.main.async {
-                                    
-                                        self.exchangeRate = rate.rate
+                        self!.rateActivityIndicator.stopAnimating()
+                    }
+                    
+                    if success {
+                        
+                        let context = CoreDataManager.sharedInstance.createNewManagedObjectContext()
+                        
+                        context.perform({
+                        
+                            if let sourceCurrency = Currency.find(by: self!.sourceCurrencyName, in: context) {
+                                
+                                if let targetCurrency = Currency.find(by: targetCurrencyName, in: context) {
+                            
+                                    if let rate = ExchangeRate.find(by: sourceCurrency, destination: targetCurrency, in: context) {
+                                        
+                                        let _rate = rate.rate
+                    
+                                        DispatchQueue.main.async {
+                                        
+                                            self!.exchangeRate = _rate
+                                        }
                                     }
                                 }
                             }
+                        })
+                    }
+                    else {
+                        
+                        DispatchQueue.main.async {
+                            
+                            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error dialog titl"), message: NSLocalizedString("Error updating exchange rate", comment: "Error mssag when exchange rate updat failed"), preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                            
+                            self!.present(alert, animated: true, completion: nil)
                         }
-                    })
-                }
-                else {
-                    
-                    DispatchQueue.main.async {
-                        
-                        let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error dialog titl"), message: NSLocalizedString("Error updating exchange rate", comment: "Error mssag when exchange rate updat failed"), preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                        
-                        self.present(alert, animated: true, completion: nil)
                     }
                 }
             }
@@ -326,6 +356,26 @@ class CheckoutViewController: ShoppingCartBaseController, UITableViewDelegate, U
         else {
             
             exchangeRate = 1.0
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == Segue.switchCurrency {
+            
+            let target = segue.destination as! CurrencyViewController
+            
+            target.sourceCurrencyName = self.sourceCurrencyName
+            
+            target.currencySelectedBlock = {(currency) in
+                
+                if currency != nil {
+                    
+                    self.selectedCurrency = currency!
+                }
+            }
         }
     }
 }

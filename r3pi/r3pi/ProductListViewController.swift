@@ -16,6 +16,8 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var cartSummaryHolder: UIView!
     @IBOutlet weak var cartSummaryHeight: NSLayoutConstraint!
     
+    private weak var cartSummaryController: ShoppingCartSummaryViewController?
+    
     private struct Segue {
         
         static let cartSummary  = "cartSummary"
@@ -34,6 +36,13 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLayoutSubviews() {
         
         productsTableView.contentInset = UIEdgeInsets(top: cartSummaryHeight.constant, left: 0, bottom: 0, right: 0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+     
+        super.viewDidAppear(animated)
+        
+        cartSummaryController?.forceRefresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +69,8 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
     private func addToCart(product: Product) {
         
         BasketItem.addToCart(product: product)
+        
+        cartSummaryController?.forceRefresh()
     }
     
     private func checkout() {
@@ -166,9 +177,9 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
         
         if segue.identifier == Segue.cartSummary {
             
-            let target = segue.destination as! ShoppingCartSummaryViewController
+            cartSummaryController = segue.destination as? ShoppingCartSummaryViewController
             
-            target.checkoutBlock = {() in
+            cartSummaryController!.checkoutBlock = {() in
                 
                 self.checkout()
             }

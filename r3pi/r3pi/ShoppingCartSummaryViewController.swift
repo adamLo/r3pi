@@ -24,7 +24,7 @@ class ShoppingCartSummaryViewController: ShoppingCartBaseController {
         
         calculateCartSummary()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -89,5 +89,11 @@ class ShoppingCartSummaryViewController: ShoppingCartBaseController {
             summaryLabel.text = String(format: NSLocalizedString("%d products in cart total %0.2f %@", comment: "Shopping cart summary format"), numItems, sumPrice, currency)
             checkoutButton.isEnabled = true
         }
+    }
+    
+    func forceRefresh() {
+        
+        super.fetchItems()
+        calculateCartSummary()
     }
 }

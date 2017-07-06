@@ -39,6 +39,7 @@
 		1990A7AF1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7AE1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift */; };
 		1990A7B11F0ECBBD006C41F4 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7B01F0ECBBD006C41F4 /* CheckoutViewController.swift */; };
 		1990A7B41F0ECEDD006C41F4 /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7B31F0ECEDD006C41F4 /* CheckoutCell.swift */; };
+		1990A7B61F0EE4CC006C41F4 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7B51F0EE4CC006C41F4 /* CurrencyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		1990A7AE1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartSummaryViewController.swift; sourceTree = "<group>"; };
 		1990A7B01F0ECBBD006C41F4 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		1990A7B31F0ECEDD006C41F4 /* CheckoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
+		1990A7B51F0EE4CC006C41F4 /* CurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 		1990A79E1F0E8CD8006C41F4 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1990A7B71F0EE4D1006C41F4 /* Currency */,
 				1990A7B21F0ECBC7006C41F4 /* Checkout */,
 				1990A7A91F0EBE28006C41F4 /* Shopping Cart */,
 				1990A7A31F0E8D10006C41F4 /* Product List */,
@@ -286,6 +289,14 @@
 				1990A7B31F0ECEDD006C41F4 /* CheckoutCell.swift */,
 			);
 			name = Checkout;
+			sourceTree = "<group>";
+		};
+		1990A7B71F0EE4D1006C41F4 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				1990A7B51F0EE4CC006C41F4 /* CurrencyViewController.swift */,
+			);
+			name = Currency;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,6 +458,7 @@
 				195BEBD71F0D6043001C57D2 /* r3pi.xcdatamodeld in Sources */,
 				1990A7A21F0E8D0B006C41F4 /* ProductCell.swift in Sources */,
 				1990A7781F0D75DF006C41F4 /* CurrencyManager.swift in Sources */,
+				1990A7B61F0EE4CC006C41F4 /* CurrencyViewController.swift in Sources */,
 				195BEBEA1F0D635C001C57D2 /* CoreDataManager.swift in Sources */,
 				1990A7B11F0ECBBD006C41F4 /* CheckoutViewController.swift in Sources */,
 				1990A77C1F0D8525006C41F4 /* ExchangeRate+Database.swift in Sources */,

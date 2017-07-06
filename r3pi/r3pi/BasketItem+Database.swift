@@ -72,4 +72,30 @@ extension BasketItem {
         
         return item
     }
+    
+    class func clearCart() {
+    
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        
+        let context = CoreDataManager.sharedInstance.createNewManagedObjectContext()
+        context.perform {
+            
+            do {
+                
+                let items = try context.fetch(fetchRequest) as! [BasketItem]
+                
+                for item in items {
+                    
+                    context.delete(item)
+                }
+                
+                try context.save()
+            }
+            catch let error {
+                
+                print("Error executing fetch request \(error)")
+            }
+        }
+    }
+    
 }
