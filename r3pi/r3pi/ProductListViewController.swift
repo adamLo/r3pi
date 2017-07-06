@@ -13,6 +13,14 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var productsTableView: UITableView!
     
+    @IBOutlet weak var cartSummaryHolder: UIView!
+    @IBOutlet weak var cartSummaryHeight: NSLayoutConstraint!
+    
+    private struct Segue {
+        
+        static let cartSummary  = "cartSummary"
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -20,6 +28,11 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
         setupUI()
         
         fetchProducts()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        productsTableView.contentInset = UIEdgeInsets(top: cartSummaryHeight.constant, left: 0, bottom: 0, right: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +52,17 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
     private func setupTableview() {
         
         productsTableView.tableFooterView = UIView()
+    }
+    
+    // MARK: - Actions
+    
+    private func addToCart(product: Product) {
+        
+        BasketItem.addToCart(product: product)
+    }
+    
+    private func checkout() {
+        
     }
 
     // MARK: - TableView
@@ -67,6 +91,11 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
             let product = products[indexPath.row]
             
             cell.setup(with: product)
+            
+            cell.addButtonTouchedBlock = {() in
+                
+                self.addToCart(product: product)
+            }
         }
         
         return cell
@@ -108,5 +137,39 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        productsTableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+            
+        case .insert: productsTableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .delete: productsTableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .update: productsTableView.reloadRows(at: [indexPath!], with: .automatic)
+        default: break
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        productsTableView.endUpdates()
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == Segue.cartSummary {
+            
+            let target = segue.destination as! ShoppingCartSummaryViewController
+            
+            target.checkoutBlock = {() in
+                
+                self.checkout()
+            }
+        }
+    }
 }

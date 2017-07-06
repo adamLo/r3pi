@@ -34,6 +34,9 @@
 		1990A7A21F0E8D0B006C41F4 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7A11F0E8D0B006C41F4 /* ProductCell.swift */; };
 		1990A7A61F0E8DCD006C41F4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7A51F0E8DCD006C41F4 /* Font.swift */; };
 		1990A7A81F0EB52D006C41F4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7A71F0EB52D006C41F4 /* Color.swift */; };
+		1990A7AB1F0EBECF006C41F4 /* ShoppingCartBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7AA1F0EBECF006C41F4 /* ShoppingCartBaseController.swift */; };
+		1990A7AD1F0EBFA5006C41F4 /* BasketItem+Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7AC1F0EBFA5006C41F4 /* BasketItem+Database.swift */; };
+		1990A7AF1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1990A7AE1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		1990A7A11F0E8D0B006C41F4 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		1990A7A51F0E8DCD006C41F4 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		1990A7A71F0EB52D006C41F4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		1990A7AA1F0EBECF006C41F4 /* ShoppingCartBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartBaseController.swift; sourceTree = "<group>"; };
+		1990A7AC1F0EBFA5006C41F4 /* BasketItem+Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasketItem+Database.swift"; sourceTree = "<group>"; };
+		1990A7AE1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartSummaryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 				195BEBEF1F0D69B9001C57D2 /* Product+Database.swift */,
 				1990A7791F0D78A1006C41F4 /* Currency+Database.swift */,
 				1990A77B1F0D8525006C41F4 /* ExchangeRate+Database.swift */,
+				1990A7AC1F0EBFA5006C41F4 /* BasketItem+Database.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -234,6 +241,7 @@
 		1990A79E1F0E8CD8006C41F4 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1990A7A91F0EBE28006C41F4 /* Shopping Cart */,
 				1990A7A31F0E8D10006C41F4 /* Product List */,
 			);
 			name = Scenes;
@@ -255,6 +263,15 @@
 				1990A7A71F0EB52D006C41F4 /* Color.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		1990A7A91F0EBE28006C41F4 /* Shopping Cart */ = {
+			isa = PBXGroup;
+			children = (
+				1990A7AA1F0EBECF006C41F4 /* ShoppingCartBaseController.swift */,
+				1990A7AE1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift */,
+			);
+			name = "Shopping Cart";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,13 +414,16 @@
 				1990A76F1F0D70EF006C41F4 /* Currency+CoreDataProperties.swift in Sources */,
 				195BEBF01F0D69B9001C57D2 /* Product+Database.swift in Sources */,
 				1990A7A81F0EB52D006C41F4 /* Color.swift in Sources */,
+				1990A7AD1F0EBFA5006C41F4 /* BasketItem+Database.swift in Sources */,
 				1990A7711F0D70EF006C41F4 /* Product+CoreDataProperties.swift in Sources */,
 				195BEBEC1F0D6465001C57D2 /* DatabaseInitializer.swift in Sources */,
 				1990A76E1F0D70EF006C41F4 /* Currency+CoreDataClass.swift in Sources */,
 				1990A76D1F0D70EF006C41F4 /* ExchangeRate+CoreDataProperties.swift in Sources */,
 				1990A77A1F0D78A1006C41F4 /* Currency+Database.swift in Sources */,
+				1990A7AF1F0EC052006C41F4 /* ShoppingCartSummaryViewController.swift in Sources */,
 				1990A7701F0D70EF006C41F4 /* Product+CoreDataClass.swift in Sources */,
 				1990A76C1F0D70EF006C41F4 /* ExchangeRate+CoreDataClass.swift in Sources */,
+				1990A7AB1F0EBECF006C41F4 /* ShoppingCartBaseController.swift in Sources */,
 				1990A7731F0D70EF006C41F4 /* BasketItem+CoreDataProperties.swift in Sources */,
 				1990A7A01F0E8CF3006C41F4 /* ProductListViewController.swift in Sources */,
 				1990A7721F0D70EF006C41F4 /* BasketItem+CoreDataClass.swift in Sources */,

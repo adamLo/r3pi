@@ -14,4 +14,6 @@ extension UIColor {
     static let defaultTextColor     = UIColor.black
     
     static let defaultButtonColor   = UIColor.blue
+    
+    static let disabledButtonColor  = UIColor.darkGray
 }
