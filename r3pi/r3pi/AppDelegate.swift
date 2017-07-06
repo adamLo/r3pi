@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        NetworkManager.sharedInstance.updateRates(source: "USD", Completion: { (success, error) in
 //        })
         
+//        UIFont.installedFonts()
+        
         return true
     }
 
