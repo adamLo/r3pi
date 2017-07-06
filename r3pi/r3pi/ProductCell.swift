@@ -36,7 +36,7 @@ class ProductCell: UITableViewCell {
     func setup(with product: Product) {
         
         titleLabel.text = product.name
-        priceLabel.text = String(format: NSLocalizedString("%@ %02.f per %@", comment: "Product price format"), product.currency ?? "N/A", product.price, product.unit ?? "N/A")
+        priceLabel.text = String(format: NSLocalizedString("%@ %0.2f per %@", comment: "Product price format"), product.currency ?? "N/A", product.price, product.unit ?? "N/A")
     }
     
     @IBAction func cartButtonTouched(_ sender: Any) {

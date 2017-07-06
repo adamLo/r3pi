@@ -19,6 +19,7 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
     private struct Segue {
         
         static let cartSummary  = "cartSummary"
+        static let checkout     = "checkout"
     }
     
     override func viewDidLoad() {
@@ -63,6 +64,7 @@ class ProductListViewController: UIViewController, UITableViewDelegate, UITableV
     
     private func checkout() {
         
+        performSegue(withIdentifier: Segue.checkout, sender: self)
     }
 
     // MARK: - TableView

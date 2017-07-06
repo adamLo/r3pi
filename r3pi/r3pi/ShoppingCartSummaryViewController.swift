@@ -67,11 +67,14 @@ class ShoppingCartSummaryViewController: ShoppingCartBaseController {
                 
                 numItems += 1
                 
-                sumPrice += item.amount * item.product!.price
+                if let product = item.product {
                 
-                if item.product!.currency != nil && currency == "" {
+                    sumPrice += item.amount * product.price
                     
-                    currency = item.product!.currency!
+                    if product.currency != nil && currency == "" {
+                        
+                        currency = product.currency!
+                    }
                 }
             }
         }
