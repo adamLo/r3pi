@@ -11,12 +11,12 @@ import CoreData
 
 extension ExchangeRate {
     
-    static let entityName   = "ExchangeRate"
+    static let entityName       = "ExchangeRate"
     
     private struct JSONkeys {
         
-        static let quotes   = "quotes"
-        
+        static let quotes       = "quotes"
+        static let timestamp    = "timestamp"
     }
     
     class func new(in context: NSManagedObjectContext) -> ExchangeRate {
@@ -28,10 +28,10 @@ extension ExchangeRate {
         return rate
     }
     
-    class func find(by source: String, destination: String, in context: NSManagedObjectContext) -> ExchangeRate? {
+    class func find(by source: Currency, destination: Currency, in context: NSManagedObjectContext) -> ExchangeRate? {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "sourceCurrency.shortName = %@ AND destinationCurrency.shortName = %@", source, destination)
+        fetchRequest.predicate = NSPredicate(format: "sourceCurrency = %@ AND destinationCurrency = %@", source, destination)
         fetchRequest.fetchLimit = 1
         
         do {
@@ -50,6 +50,14 @@ extension ExchangeRate {
     
     class func process(json: JSONObject, completion: SuccessCompletionBlockType?) {
         
+        var updateTime = NSDate()
+        
+        if let timestamp = json[JSONkeys.timestamp] as? TimeInterval {
+            
+            let date = NSDate(timeIntervalSince1970: timestamp)
+            updateTime = date
+        }
+        
         if let rateObjects = json[JSONkeys.quotes] as? NSDictionary {
             
             let context = CoreDataManager.sharedInstance.createNewManagedObjectContext()
@@ -60,25 +68,31 @@ extension ExchangeRate {
                     
                     if let pairName = key as? String, let rate = value as? Double {
                         
-                        let sourceName = (pairName as NSString).substring(to: 3)
-                        let destinationName = (pairName as NSString).substring(from: 3)
+                        if pairName.characters.count == 6 {
                         
-                        var exchangeRate: ExchangeRate? = ExchangeRate.find(by: sourceName, destination: destinationName, in: context)
-                        
-                        if exchangeRate == nil {
+                            let sourceName = (pairName as NSString).substring(to: 3)
+                            let destinationName = (pairName as NSString).substring(from: 3)
                             
-                            if let sourceCurrency = Currency.find(by: sourceName, in: context), let destinationCurrency = Currency.find(by: destinationName, in: context) {
+                            if let sourceCurrency = Currency.find(by: sourceName, in: context) {
                                 
-                                exchangeRate = ExchangeRate.new(in: context)
-                                exchangeRate!.sourceCurrency = sourceCurrency
-                                exchangeRate!.destinationCurrency = destinationCurrency
+                                if let destinationCurrency = Currency.find(by: destinationName, in: context) {
+                                
+                                    var exchangeRate: ExchangeRate? = ExchangeRate.find(by: sourceCurrency, destination: destinationCurrency, in: context)
+                                    
+                                    if exchangeRate == nil {
+                                        
+                                        exchangeRate = ExchangeRate.new(in: context)
+                                        exchangeRate!.sourceCurrency = sourceCurrency
+                                        exchangeRate!.destinationCurrency = destinationCurrency
+                                    }
+                                    
+                                    if exchangeRate != nil {
+                                        
+                                        exchangeRate!.rate = rate
+                                        exchangeRate!.updateTime = updateTime
+                                    }
+                                }
                             }
-                        }
-                        
-                        if exchangeRate != nil {
-                            
-                            exchangeRate!.rate = rate
-                            exchangeRate!.updateTime = NSDate()
                         }
                     }
                     

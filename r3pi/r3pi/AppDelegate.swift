@@ -19,18 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CoreDataManager.sharedInstance.seedDatabase()
         
-        NetworkManager.sharedInstance.fetchCurrencies { (success, error) in
-            
-            if success {
-                
-                DispatchQueue.main.async {
-                    
-                    NetworkManager.sharedInstance.updateRates(source: "USD", Completion: { (success, error) in
-                        //
-                    })
-                }
-            }
-        }
+//        NetworkManager.sharedInstance.fetchCurrencies { (success, error) in
+//        }
+    
+//        NetworkManager.sharedInstance.updateRates(source: "USD", Completion: { (success, error) in
+//        })
         
         return true
     }
